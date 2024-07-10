@@ -4,7 +4,9 @@ import "./Navbar.css";
 const Navbar = () => {
   return (
     <React.Fragment>
-      <div>Navbar</div>
+      <div className="Navbar">
+        
+      </div>
     </React.Fragment>
   );
 };
