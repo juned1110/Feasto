@@ -7,7 +7,8 @@ import { StoreContext } from "../../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
 
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { food_list, cartItems, removeFromCart, getTotalCartAmount } =
+    useContext(StoreContext);
 
   return (
     <React.Fragment>
@@ -51,7 +52,20 @@ const Navbar = ({ setShowLogin }) => {
             <Link to="/cart">
               <img src={assets.basket_icon} alt="" />
             </Link>
-            <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+            <div className={getTotalCartAmount() === 0 ? "" : "dot"}>
+              {food_list.map((item, index) => {
+                if (cartItems[item._id] > 0) {
+                  return (
+                    <React.Fragment>
+                      <div className="cart-items-title cart-items-item">
+                        <p>{cartItems[item._id] > 4 ? "4+" : cartItems[item._id]}</p>
+                      </div>
+                      <hr />
+                    </React.Fragment>
+                  );
+                }
+              })}
+            </div>
           </div>
           <button onClick={() => setShowLogin(true)}>sign in</button>
         </div>
