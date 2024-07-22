@@ -55,22 +55,10 @@
   position: absolute;
   min-width: 10px;
   min-height: 10px;
+  background-color: tomato;
+  border-radius: 5px;
   top: -8px;
   right: -8px;
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-}
-
-.cart-items-title p {
-  position: absolute;
-  background-color: #CB032C;
-  width: 17px;
-  height: 17px;
-  border-radius: 100%;
-  margin-bottom: 7px;
-  color: white;
-  font-size: 15px;
 }
 
 @media (max-width:1050px) {
