@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
+import foodRouter from "./routes/foodRoute.js";
 
 //app config//
 const app = express();
@@ -13,6 +14,9 @@ app.use(cors());
 //DB connection//
 connectDB();
 
+// api endpoint
+app.use("/api/food", foodRouter);
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
@@ -20,7 +24,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-// mongodb+srv://junedk1110:37F72DHHjaMAtJwR@cluster0.g8lrgdg.mongodb.net/?
-
-// mongodb+srv://junedk1110:37F72DHHjaMAtJwR@cluster0.g8lrgdg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
