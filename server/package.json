@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Feasto",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "server": "nodemon server.js"
   },
