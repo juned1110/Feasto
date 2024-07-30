@@ -31,8 +31,10 @@ const LoginPopup = ({ setShowLogin }) => {
     }
 
     try {
+      console.log("Submitting data:", data);
       const response = await axios.post(newUrl, data);
 
+      console.log("Response:", response);
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
@@ -41,7 +43,15 @@ const LoginPopup = ({ setShowLogin }) => {
         alert(response.data.message);
       }
     } catch (error) {
-      alert("An error occurred. Please try again.");
+      console.error("Error:", error);
+      if (error.response) {
+        console.error("Response Error:", error.response.data);
+        alert(
+          error.response.data.message || "An error occurred. Please try again."
+        );
+      } else {
+        alert("An error occurred. Please try again.");
+      }
     }
   };
 
