@@ -4,10 +4,11 @@ import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { food_list, cartItems, removeFromCart, getTotalCartAmount, url } =
+  const { foodList, cartItems, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <div className="cart">
@@ -22,16 +23,16 @@ const Cart = () => {
           </div>
           <br />
           <hr />
-          {food_list.map((item, index) => {
+          {foodList?.map((item) => {
             if (cartItems[item._id] > 0) {
               return (
-                <React.Fragment>
+                <React.Fragment key={item._id}>
                   <div className="cart-items-title cart-items-item">
-                    <img src={url + "/images/" + item.image} alt="" />
+                    <img src={`${url}/images/${item.image}`} alt={item.name} />
                     <p>{item.name}</p>
-                    <p> ₹{item.price}</p>
+                    <p>₹{item.price}</p>
                     <p>{cartItems[item._id]}</p>
-                    <p> ₹{item.price * cartItems[item._id]}</p>
+                    <p>₹{item.price * cartItems[item._id]}</p>
                     <p
                       onClick={() => removeFromCart(item._id)}
                       className="cross"
@@ -43,6 +44,7 @@ const Cart = () => {
                 </React.Fragment>
               );
             }
+            return null;
           })}
         </div>
         <div className="cart-bottom">
@@ -55,7 +57,7 @@ const Cart = () => {
               </div>
               <hr />
               <div className="cart-total-details">
-                <p>Delievery Fee</p>
+                <p>Delivery Fee</p>
                 <p>₹{getTotalCartAmount() === 0 ? 0 : 2}</p>
               </div>
               <hr />
