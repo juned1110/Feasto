@@ -31,8 +31,6 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  console.log("addtocart", cartItems);
-
   const removeFromCart = async (itemId) => {
     setCartItems((prevCartItems) => {
       const updatedCartItems = { ...prevCartItems };
