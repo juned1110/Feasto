@@ -87,12 +87,17 @@
 .nav-profile-dropdown li {
   display: flex;
   align-items: center;
-  gap: 10px;
   cursor: pointer;
+  gap: 10px;
 }
 
 .nav-profile-dropdown img {
   width: 20px;
+}
+
+.nav-profile-dropdown .Orders {
+  margin-left: 10px;
+  /* Adjust as necessary to align properly */
 }
 
 .nav-profile-dropdown li:hover {
