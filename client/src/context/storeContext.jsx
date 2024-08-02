@@ -80,7 +80,7 @@ const StoreContextProvider = (props) => {
         {},
         { headers: { token } }
       );
-      setCartItems(response.data.cartData);
+      setCartItems(response.data.cartData || {});
     } catch (error) {
       console.error("Failed to load cart data", error);
     }
