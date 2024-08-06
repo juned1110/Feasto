@@ -91,4 +91,34 @@ const userOrders = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder, userOrders };
+//Listing order for admin panel
+
+const listOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
+//api for updating order status
+const updateStatus = async (req, res) => {
+  try {
+    console.log("Update request body:", req.body);
+    const { orderId, status } = req.body;
+    if (!orderId || !status) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing orderId or status" });
+    }
+
+    await orderModel.findByIdAndUpdate(orderId, { status });
+    res.json({ success: true, message: "Status Updated" });
+  } catch (error) {
+    console.log("Error updating status:", error);
+    res.status(500).json({ success: false, message: "Error" });
+  }
+};
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
