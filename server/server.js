@@ -8,11 +8,10 @@ import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 
 dotenv.config();
-console.log("Stripe API Key from .env:", process.env.STRIPESECRET_KEY);
 
 //app config
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //middleware
 app.use(express.json());
